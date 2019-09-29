@@ -1,0 +1,96 @@
+.quest-details-form {
+    background-color: #FFF;
+    border-radius: 3px;
+    padding: 15px;
+    position: relative;
+    text-align: left;
+    margin: 10px auto;
+    box-shadow: -3px 4px 18px -5px #BBB;
+    display: block;
+}
+
+.quest-details-form label {
+    display: block;
+    margin: 5px auto 15px;
+    
+    input[type="text"] {
+        font-size: 18px;
+        border-radius: 5px;
+        border: solid thin #DDD;
+        padding: 12px 8px;
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .bottom-controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .character-counter {
+        display: inline-block;
+        font-weight: bolder;
+        font-size: 12px;
+        text-align: left;
+        padding: 5px 0px;
+    }
+
+    .delete-btn {
+        display: inline-block;
+        margin: 2.5px 2.5px;
+        font-size: 18px;
+        cursor: pointer;
+    }
+}
+
+.top-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .delete-quest {
+        border: none;
+        color: #553f2b;
+        background-color: transparent;
+        margin-left: 8px;
+    }
+}
+
+.add-line {
+    display: inline-block;
+    border: none;
+    background-color: #553f2b;
+    color: #FFF;
+    font-weight: bolder;
+    padding: 10px 24px;
+    border-radius: 4px;
+}
+
+.line-counter {
+    font-size: 25px;
+}
+
+.details-input-boxes {
+    padding: 12px 0px;
+}
+
+.plain-text-wrapper {
+    border-top: dashed 3px #DDD;
+    padding: 15px 0px;
+}
+
+.details-code {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+}
+
+.top {
+    display: block;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    border-bottom: solid 2px palevioletred;
+}

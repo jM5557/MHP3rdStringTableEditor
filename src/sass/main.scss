@@ -1,0 +1,33 @@
+@import 'reset';
+
+body {
+    background-color: #FEFEFE;
+}
+
+.app {
+    text-align: center;
+    padding: 25px;
+}
+
+button, input[type="submit"] {
+    cursor: pointer;
+}
+
+code {
+    display: block;
+    white-space: pre-wrap;
+}
+
+.quest-details-form-wrapper {
+    display: inline-block;
+    width: 480px;
+    margin: 12px;
+    vertical-align: top;
+
+    @media all and (max-width: 900px) {
+        display: block;
+        width: 95%;
+        box-sizing: border-box;
+        margin: auto;
+    }
+}
