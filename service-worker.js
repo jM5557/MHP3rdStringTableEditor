@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/MHP3rdStringTableEditor/precache-manifest.0f3a87ec8e0e6d8e3a97614291bd07e1.js"
+  "/MHP3rdStringTableEditor/precache-manifest.3233c2ac368904d047c1cd935d096fbd.js"
 );
 
 self.addEventListener('message', (event) => {
