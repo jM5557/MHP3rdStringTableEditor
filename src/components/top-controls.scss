@@ -1,0 +1,43 @@
+.top-controls {
+    box-shadow: 0px 5px 26px -6px #DDD;
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.top-controls {
+    input[type="file"] {
+        display: none;
+    }
+
+    .file-import {
+        display: inline-block;
+        border: dashed 2px #DDD;
+        padding: 12px;
+        cursor: pointer;
+        border-radius: 3px;
+        transition: border-color 0.24s ease;
+        margin-right: 5px;
+
+        &:hover {
+            border-color: #888;
+        }
+    }
+
+    .delete-all-btn {
+        background-color: transparent;
+        padding: 8px 10px;
+        color: #111;
+    }
+
+    .side-controls {
+        display: flex;
+        justify-content: center;
+        flex-flow: row nowrap;
+
+        &.right {
+            margin-right: 0px;
+            margin-left: auto;
+        }
+    }
+}

@@ -1,0 +1,22 @@
+.quest-form {
+    & > label {
+        padding: 20px 15px;
+        display: block;
+
+        .field-name {
+            font-size: 14px;
+            font-weight: bolder;
+            margin-bottom: 6px;
+        }
+
+        input[type="text"] {
+            border: solid thin #DDD;
+            padding: 12px;
+            font-size: 20px;
+            display: block;
+            box-sizing: border-box;
+            border-radius: 4px;
+            width: 100%;
+        }
+    }
+}

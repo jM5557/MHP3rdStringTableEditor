@@ -1,12 +1,102 @@
 .quest-details-form {
     background-color: #FFF;
-    border-radius: 3px;
     padding: 15px;
     position: relative;
     text-align: left;
     margin: 10px auto;
-    box-shadow: -3px 4px 18px -5px #BBB;
     display: block;
+
+    &.multi {
+        box-shadow: -3px 4px 18px -5px #BBB;
+        border-radius: 3px;
+    }
+}
+
+.quest-details-form {
+    .top-controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .add-line {
+        display: inline-block;
+        border: none;
+        background-color: #553f2b;
+        color: #FFF;
+        font-weight: bolder;
+        padding: 10px 24px;
+        border-radius: 4px;
+    }
+    
+    .line-counter {
+        font-size: 25px;
+    }
+    
+    .details-input-boxes {
+        padding: 12px 0px;
+    }
+    
+    .plain-text-wrapper {
+        border-top: dashed 3px #DDD;
+        padding: 15px 0px;
+    }
+    
+    .top {
+        display: block;
+        padding-bottom: 12px;
+        margin-bottom: 12px;
+        border-bottom: solid 2px palevioletred;
+    }
+
+    code {
+        margin-bottom: 10px;
+    }
+
+    .copy-btn {
+        display: block;
+        margin: auto;
+        width: 85%;
+        max-width: 480px;
+        font-size: 18px;
+        background-color: #6950f7;
+    }
+
+    .bottom-controls {
+        margin-top: 5px;
+
+        .add-line-below {
+            background-color: transparent;
+            background-color: purple;
+            padding: 5px 10px;
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+    }
+
+    .load-new-details {
+        margin-top: 10px;
+        background-color: #df5506;
+    }
+
+    .delete-btn {
+        background-color: transparent;
+        color: #111;
+        font-size: 12px;
+        padding: 4px 12px;
+    }
+
+    .bottom-details {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .load-quest-details {
+        p {
+            margin-bottom: 8px;
+        }
+    }
 }
 
 .quest-details-form label {
@@ -43,54 +133,4 @@
         font-size: 18px;
         cursor: pointer;
     }
-}
-
-.top-controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    .delete-quest {
-        border: none;
-        color: #553f2b;
-        background-color: transparent;
-        margin-left: 8px;
-    }
-}
-
-.add-line {
-    display: inline-block;
-    border: none;
-    background-color: #553f2b;
-    color: #FFF;
-    font-weight: bolder;
-    padding: 10px 24px;
-    border-radius: 4px;
-}
-
-.line-counter {
-    font-size: 25px;
-}
-
-.details-input-boxes {
-    padding: 12px 0px;
-}
-
-.plain-text-wrapper {
-    border-top: dashed 3px #DDD;
-    padding: 15px 0px;
-}
-
-.details-code {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    display: block;
-}
-
-.top {
-    display: block;
-    padding-bottom: 12px;
-    margin-bottom: 12px;
-    border-bottom: solid 2px palevioletred;
 }

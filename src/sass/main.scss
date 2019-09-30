@@ -2,6 +2,8 @@
 
 body {
     background-color: #FEFEFE;
+    position: relative;
+    overflow-x: hidden;
 }
 
 .app {
@@ -11,11 +13,21 @@ body {
 
 button, input[type="submit"] {
     cursor: pointer;
+    padding: 12px;
+    background-color: #111;
+    color: #FFF;
+    border: none;
+    font-weight: bolder;
+    border-radius: 4px;
 }
 
 code {
     display: block;
-    white-space: pre-wrap;
+    white-space: nowrap;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+    overflow-x: auto;
+    padding: 20px;
 }
 
 .quest-details-form-wrapper {
@@ -30,4 +42,10 @@ code {
         box-sizing: border-box;
         margin: auto;
     }
+}
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
