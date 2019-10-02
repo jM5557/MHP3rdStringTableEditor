@@ -34,7 +34,7 @@ let Content = () => {
 
       {(context.files.length < 1) &&
         <div className = "large-import">
-          <FileImport />
+          <FileImport doNotDisplayMessage = { true } />
         </div>
       }
       

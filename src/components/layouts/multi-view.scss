@@ -1,0 +1,29 @@
+.multi-view {
+    .file-previews {
+        padding: 25px;
+        text-align: center;
+    }
+
+    .other-file-preview {
+        display: inline-block;
+        width: 320px;
+        margin: 15px;
+        padding: 15px;
+        box-shadow: -3px 4px 18px -5px #BBB;
+        border-radius: 3px;
+
+        .delete-btn {
+            display: block;
+            background-color: transparent;
+            padding: 15px 55px;
+            color: #111;
+            margin: auto;
+        }
+    }
+
+    .file-name {
+        font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+        font-size: 12px;
+        letter-spacing: 1.05px;
+    }
+}

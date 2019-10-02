@@ -3,9 +3,13 @@ import copy from "copy-to-clipboard";
 export default (data) => {
     let str = "";
 
-    for (let prop in data) {
-        if (Object.prototype.hasOwnProperty.call(data, prop)) {
-            str += data[prop] + "\n";
+    if (typeof data === "string") {
+        str = data
+    } else {
+        for (let prop in data) {
+            if (Object.prototype.hasOwnProperty.call(data, prop)) {
+                str += data[prop] + "\n";
+            }
         }
     }
 

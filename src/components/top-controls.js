@@ -9,14 +9,17 @@ export const TopControls = () => {
     
     return (
         <div className = "top-controls">
-            { (context.files.length > 0 && context.viewMode === 'SINGLE') &&
-                <button 
-                    onClick = { context.setViewMode.bind(this, 'MULTI') }
-                    className = "view-btn"
-                >
-                    View All Files
-                </button>
-            }
+            <div>
+                <span className = "files-loaded">{ context.files.length } file(s)</span>
+                { (context.files.length > 0 && context.viewMode === 'SINGLE') &&
+                    <button 
+                        onClick = { context.setViewMode.bind(this, 'MULTI') }
+                        className = "view-btn"
+                    >
+                        View All Files
+                    </button>
+                }
+            </div>
 
             <div className = "side-controls right">
                 <FileImport />

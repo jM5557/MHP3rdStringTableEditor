@@ -4,6 +4,7 @@
 
 $fontHeavy: 'Barlow', sans-serif;
 $fontNormal: 'Crimson Text', serif;
+$fontCode: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 
 body {
     background-color: #FEFEFE;
@@ -33,10 +34,18 @@ button, input[type="submit"] {
 code {
     display: block;
     white-space: nowrap;
-    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+    font-family: $fontCode;
     overflow-x: auto;
     padding: 20px;
+}
+
+.copy-btn {
+    display: block;
+    margin: 15px auto;
+    width: 85%;
+    max-width: 480px;
+    font-size: 18px;
+    background-color: #6950f7;
 }
 
 .quest-details-form-wrapper {
@@ -71,7 +80,7 @@ code {
         display: none;
     }
 
-    .file-import {
+    .file-import-inner {
         border-radius: 4px;
         border: dashed 3px #DDD;
         padding: 18px 36px;
@@ -89,7 +98,7 @@ code {
     }
 }
 
-.file-import {
+.file-import-inner {
     font-family: $fontHeavy;
     letter-spacing: 1.25px;
     text-transform: uppercase;
@@ -100,5 +109,31 @@ code {
     
     &:hover {
         border-color: #888;
+    }
+}
+
+.space-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top {
+    font-family: $fontHeavy;
+    font-weight: bolder;
+    font-size: 32px;
+    letter-spacing: 1.25px;
+    margin-bottom: 10px;
+    
+    span {
+        display: inline-block;
+        vertical-align: bottom;
+    }
+
+    .file-name {
+        font-family: $fontCode;
+        font-size: 11px;
+        padding: 0px 0px 2px;
+        margin-left: 10px;
     }
 }

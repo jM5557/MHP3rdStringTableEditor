@@ -1,10 +1,9 @@
 import React, { Component, Fragment } from 'react';
-import copy from 'copy-to-clipboard';
 import './quest-details-form.scss';
 import copyToClipboard from '../lib/copy-to-clipboard';
 import { convertArrayToFormattedText, convertTextToFormattedText, convertDetailsToArray } from '../lib/convert-text';
 
-class FileDetailsForm extends Component {
+class QuestDetailsForm extends Component {
     constructor (props) {
         super(props);
 
@@ -179,38 +178,34 @@ class FileDetailsForm extends Component {
                                 ? "quest-details-form multi" 
                                 : "quest-details-form"
                             }>
-                <div className = "top">
-                    { (this.props.viewMode === 'MULTI') &&
-                        <Fragment>
-                            <div className = "title">
-                                { this.props.data.editable.title }
-                            </div>
-                        </Fragment>
-                    }
+                { (this.props.viewMode === "MULTI") &&
+                    <div className = "top-bar">
+                        <div className = "title">
+                            { this.props.data.editable.title }
+                        </div>
                     
-                    <div className = "bottom-details">
-                        <span>{this.props.data.file_name}</span>
+                        <div className = "bottom-details">
+                            <span className = "file-name">{this.props.data.file_name}</span>
+                            <div className = "side-controls">
+                            
+                                    <Fragment>
+                                        <button onClick = { this.changeViewMode }>
+                                            Edit File
+                                        </button>
 
-                        <div className = "side-controls">
-                            { (this.props.viewMode === "MULTI") &&
-                                <Fragment>
-                                    <button onClick = { this.changeViewMode }>
-                                        Edit File
-                                    </button>
-
-                                    <button 
-                                        className = "delete-btn"
-                                        onClick = { this.props.deleteFile.bind(this, this.props.data) }
-                                    >
-                                        Delete
-                                    </button>
-                                </Fragment>
-                            }
+                                        <button 
+                                            className = "delete-btn"
+                                            onClick = { this.props.deleteFile.bind(this, this.props.data) }
+                                        >
+                                            Delete
+                                        </button>
+                                    </Fragment>
+                            </div>
                         </div>
                     </div>
-                </div>
+                }
                 
-                <div className = "top-controls">
+                <div className = "space-between">
                     <div className = "line-counter">
                         { this.state.details.length + "/7"} Lines
                     </div>
@@ -287,4 +282,4 @@ class FileDetailsForm extends Component {
     }
 }
 
-export default FileDetailsForm;
+export default QuestDetailsForm;

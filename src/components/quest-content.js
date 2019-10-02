@@ -1,9 +1,13 @@
 import React from 'react';
 import copyToClipboard from '../lib/copy-to-clipboard';
+import './quest-content.scss';
 
 export default (props) => {
     return (
         <div className = "quest-content">
+            <h1 className = "top">
+                Original File
+            </h1>
             <div className = "item">
                 <h1>Quest Title</h1>
                 <p>{ props.quest.title }</p>
@@ -13,8 +17,8 @@ export default (props) => {
                 <p>{ props.quest.target }</p>
             </div>
             <div className = "item">
-                <h1>Fail Conditions</h1>
-                <p>{ props.quest.fail_conditions }</p>
+                <h1>Fail Condition</h1>
+                <p>{ props.quest.fail_condition }</p>
             </div>
             <div className = "item">
                 <h1>Quest Details</h1>
@@ -28,9 +32,9 @@ export default (props) => {
                 <h1>Client</h1>
                 <p>{ props.quest.client }</p>
             </div>
-
+            
             <div className = "buttons">
-                <button onClick = { copyToClipboard(props.quest) }>Copy</button>
+                <button className = "copy-btn" onClick = { copyToClipboard.bind(this, props.quest) }>Copy</button>
             </div>
         </div>
     )

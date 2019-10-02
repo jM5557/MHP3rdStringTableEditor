@@ -1,6 +1,11 @@
+$fontCode: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+
 .file-form {
+    padding: 15px;
+    background-color: #FFF;
+
     & > label {
-        padding: 20px 15px;
+        padding: 20px 0px;
         display: block;
 
         .field-name {

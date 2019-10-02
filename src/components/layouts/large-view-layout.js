@@ -1,9 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import './large-view-layout.scss';
 import { TopControls } from './../top-controls';
 import QuestEditForm from '../quest-edit-form';
+import QuestContent from '../quest-content';
 import { FileContext } from './../../file-context';
 import copyToClipboard from '../../lib/copy-to-clipboard';
+import { FileContent } from '../file-content';
  
 class LargeViewLayout extends Component {
 
@@ -13,7 +15,8 @@ class LargeViewLayout extends Component {
         super(props);
 
         this.state = {
-            selectedItem: null
+            selectedItem: null,
+            viewOriginal: false
         }
     }
 
@@ -24,7 +27,6 @@ class LargeViewLayout extends Component {
     }
 
     componentDidUpdate () {
-
         if (this.context.selectedFile === null
                 && this.context.files.length > 0) {
 
@@ -34,7 +36,6 @@ class LargeViewLayout extends Component {
                 selectedItem: this.context.files[0]
             });
         }
-        
     }
 
     setSelectedItem = (item) => {
@@ -65,6 +66,16 @@ class LargeViewLayout extends Component {
         }
     }
 
+    resetQuestData = () => {
+        let data = {...this.context.selectedFile};
+
+        data.editable = {...this.context.selectedFile.original};
+
+        console.log(data.editable.title);
+
+        this.setSelectedItem(data);
+    }
+
     renderListItems = () => {
         return this.context.files.map( (item) => {
             return (
@@ -76,7 +87,7 @@ class LargeViewLayout extends Component {
                         ? 'list-item selected' : 'list-item' }
                 >
                     <div className = "flex-between">
-                        <span>{ item.file_name }</span>
+                        <span className = "file-name">{ item.file_name }</span>
                         
                         <div className = "quick-actions">
                             <button 
@@ -120,11 +131,42 @@ class LargeViewLayout extends Component {
                 <div className = "content">
                     <TopControls />
 
-                    <QuestEditForm
-                        file = { this.state.selectedItem }
-                        deleteFile = { this.context.deleteFile }
-                        updateFile = { this.context.updateFile }
-                    />
+                    { (this.context.selectedFile.file_type === "QUEST") &&
+                        <Fragment>
+                            <div className = "original-file-actions">
+                                <button onClick = { this.resetQuestData }>
+                                    Reset Quest Data
+                                </button>
+                                <button 
+                                    onClick = { () => { this.setState({ viewOriginal: !this.state.viewOriginal }) } }
+                                >
+                                    { (!this.state.viewOriginal) 
+                                        ? 'View Original' 
+                                        : 'Close' 
+                                    }
+                                </button>
+                            </div>
+
+                            { (this.state.viewOriginal) && 
+                                <QuestContent quest = { this.context.selectedFile.original } />
+                            }
+
+                            <QuestEditForm
+                                file = { this.state.selectedItem }
+                                deleteFile = { this.context.deleteFile }
+                                updateFile = { this.context.updateFile }
+                            />
+                        </Fragment>
+                    }
+
+                    { (this.context.selectedFile.file_type !== "QUEST") &&
+                        <Fragment>
+                            <FileContent 
+                                file_name = { this.context.selectedFile.file_name } 
+                                content = { this.context.selectedFile.editable } 
+                            />
+                        </Fragment>
+                    }
                 </div>
             </div>
         )
