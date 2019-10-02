@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import './large-view-layout.scss';
 import { TopControls } from './../top-controls';
 import QuestEditForm from '../quest-edit-form';
-import { QuestContext } from './../../quest-context';
-
-import copy from 'copy-to-clipboard';
+import { FileContext } from './../../file-context';
+import copyToClipboard from '../../lib/copy-to-clipboard';
  
 class LargeViewLayout extends Component {
 
-    static contextType = QuestContext;
+    static contextType = FileContext;
 
     constructor (props) {
         super(props);
@@ -20,26 +19,26 @@ class LargeViewLayout extends Component {
 
     componentDidMount () {
         this.setState({
-            selectedItem: this.context.selectedQuest
+            selectedItem: this.context.selectedFile
         });
     }
 
     componentDidUpdate () {
 
-        if (this.context.selectedQuest === null
-                && this.context.quests.length > 0) {
+        if (this.context.selectedFile === null
+                && this.context.files.length > 0) {
 
-            this.context.setSelectedQuest(this.context.quests[0]);
+            this.context.setSelectedFile(this.context.files[0]);
 
             this.setState({
-                selectedItem: this.context.quests[0]
+                selectedItem: this.context.files[0]
             });
         }
         
     }
 
     setSelectedItem = (item) => {
-        this.context.setSelectedQuest(item);
+        this.context.setSelectedFile(item);
 
         this.setState({
             selectedItem: item
@@ -50,31 +49,24 @@ class LargeViewLayout extends Component {
         event.preventDefault();
         event.stopPropagation();
 
-        let formattedData = data.editable.title    + "\n"
-                    + data.editable.target         + "\n"
-                    + data.editable.fail_condition + "\n"
-                    + data.editable.details        + "\n"
-                    + data.editable.monsters       + "\n"
-                    + data.editable.client         + "\n";
-
-        copy(formattedData);
+        copyToClipboard(data.editable);
     }
 
-    deleteQuest = (quest, event) => {
+    deleteFile = (file, event) => {
         event.preventDefault();
         event.stopPropagation();
 
-        let nextQuest = this.context.deleteQuest(quest);
+        let nextFile = this.context.deleteFile(file);
 
-        if (this.state.selectedItem.id === quest.id) {
+        if (this.state.selectedItem.id === file.id) {
             this.setState({
-                selectedItem: nextQuest
+                selectedItem: nextFile
             })
         }
     }
 
     renderListItems = () => {
-        return this.context.quests.map( (item) => {
+        return this.context.files.map( (item) => {
             return (
                 <div 
                     key = {item.id}
@@ -84,7 +76,7 @@ class LargeViewLayout extends Component {
                         ? 'list-item selected' : 'list-item' }
                 >
                     <div className = "flex-between">
-                        <span>{ item.editable.file_name }</span>
+                        <span>{ item.file_name }</span>
                         
                         <div className = "quick-actions">
                             <button 
@@ -96,7 +88,7 @@ class LargeViewLayout extends Component {
 
                             <button 
                                 className = "delete-btn"
-                                onClick = {this.deleteQuest.bind(this,item)}
+                                onClick = {this.deleteFile.bind(this,item)}
                             >
                                 Delete
                             </button>
@@ -108,13 +100,13 @@ class LargeViewLayout extends Component {
     }
     
     render () {
-        if (this.context.selectedQuest === null 
+        if (this.context.selectedFile === null 
             || this.state.selectedItem === null) {
             return (
                 <div className = "content">
                     <TopControls />
                     <div>
-                        (0) Quests Loaded
+                        (0) Files Loaded
                     </div>
                 </div>
             )
@@ -129,9 +121,9 @@ class LargeViewLayout extends Component {
                     <TopControls />
 
                     <QuestEditForm
-                        quest = { this.state.selectedItem }
-                        deleteQuest = { this.context.deleteQuest }
-                        updateQuest = { this.context.updateQuest }
+                        file = { this.state.selectedItem }
+                        deleteFile = { this.context.deleteFile }
+                        updateFile = { this.context.updateFile }
                     />
                 </div>
             </div>

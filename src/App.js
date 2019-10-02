@@ -1,10 +1,10 @@
 import React, { Component, Fragment, useContext } from 'react';
-import { QuestProvider, QuestContext } from './quest-context';
+import { FileProvider, FileContext } from './file-context';
 import LargeViewLayout from './components/layouts/large-view-layout';
 import MultiViewLayout from './components/layouts/multi-view-layout';
 
 import './sass/main.scss';
-import QuestImport from './components/quest-import';
+import FileImport from './components/file-import';
 
 class App extends Component {
 
@@ -17,28 +17,28 @@ class App extends Component {
 
   render () {
     return (
-      <QuestProvider>
+      <FileProvider>
 
         <Content />
 
-      </QuestProvider>
+      </FileProvider>
     );
   }
 }
 
 let Content = () => {
-  let context = useContext(QuestContext);
+  let context = useContext(FileContext);
 
   return (
     <Fragment>
 
-      {(context.quests.length < 1) &&
+      {(context.files.length < 1) &&
         <div className = "large-import">
-          <QuestImport />
+          <FileImport />
         </div>
       }
       
-      { (context.quests.length > 0) &&
+      { (context.files.length > 0) &&
         <Fragment>
           { (context.viewMode === 'SINGLE') &&
             <LargeViewLayout />

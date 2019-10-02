@@ -1,70 +1,72 @@
 import React, { Component } from 'react';
 import QuestDetailsForm from './quest-details-form';
-import {QuestContext} from './../quest-context';
+import {FileContext} from './../file-context';
 
 import './quest-edit-form.scss';
 
-class QuestEditForm extends Component {
-    static contextType = QuestContext;
+class FileEditForm extends Component {
+    static contextType = FileContext;
 
     constructor (props) {
         super (props);
 
         this.state = {
-            quest: this.props.quest
+            file: this.props.file
         }
     }
 
     componentDidUpdate(prevProps) {
-        if (this.props.quest.id !== this.state.quest.id) {
+        if (this.props.file.id !== this.state.file.id) {
             this.setState({
-                quest: this.props.quest
+                file: this.props.file
             });
         }
     }
 
     editInputField = (propToEdit, event) => {
-        let questData = {...this.props.quest};
+        let fileData = {...this.props.file};
 
-        questData.editable[propToEdit] = event.target.value;
+        fileData.editable[propToEdit] = event.target.value;
 
         this.setState({
-            quest: questData
+            file: fileData
         });
 
-        this.context.updateQuest(questData);
+        console.log(fileData);
+
+        this.context.updateFile(fileData);
     }
 
     render () {
         return (
-            <div className = "quest-form">
+            <div className = "file-form">
 
                 <label>
-                    <div className = "field-name">Quest Title</div>
+                    <div className = "field-name">File Title</div>
                     <input 
                         type = "text" 
                         onChange = { this.editInputField.bind(this, "title")}
-                        value = { this.state.quest.editable.title }
+                        value = { this.state.file.editable.title }
                     />
                 </label>
 
                 <label>
-                    <div className = "field-name">Quest Target</div>
+                    <div className = "field-name">File Target</div>
                     <input 
                         type = "text" 
                         onChange = { this.editInputField.bind(this, "target")}
-                        value = { this.state.quest.editable.target }
+                        value = { this.state.file.editable.target }
                     />
                 </label>
 
                 <label>
                     <div className = "field-name">Fail Condition</div>
-                    <p>{ this.state.quest.editable.fail_condition }</p>
+                    <p>{ this.state.file.editable.fail_condition }</p>
                 </label>
 
                 <label>
                     <div className = "field-name">Monsters</div>
-                    <p>{ this.state.quest.editable.monsters }</p>
+                    <p>{ this.state.file.editable.monsters }</p>
                 </label>
 
                 <label>
@@ -72,13 +74,13 @@ class QuestEditForm extends Component {
                     <input 
                         type = "text" 
                         onChange = { this.editInputField.bind(this, "client")}
-                        value = { this.state.quest.editable.client }
+                        value = { this.state.file.editable.client }
                     />
                 </label>
 
                 <QuestDetailsForm
-                    data = { this.state.quest }
-                    updateQuest = { this.context.updateQuestDetails }
+                    data = { this.state.file }
+                    updateFile = { this.context.updateFileDetails }
                 />
 
             </div>
@@ -86,4 +88,4 @@ class QuestEditForm extends Component {
     }
 }
 
-export default QuestEditForm;
+export default FileEditForm;

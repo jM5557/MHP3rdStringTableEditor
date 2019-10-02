@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
-import QuestDetailsForm from './../quest-details-form';
-import { QuestContext } from './../../quest-context'; 
+import FileDetailsForm from './../quest-details-form';
+import { FileContext } from './../../file-context'; 
 import { TopControls } from './../top-controls';
 
 class MultiViewLayout extends Component {
-    static contextType = QuestContext;
+    static contextType = FileContext;
 
-    renderQuestDetailsForm = () => {
-      return this.context.quests.map( (data) => {
+    renderFileDetailsForm = () => {
+      return this.context.files.map( (data) => {
         return (
           <div 
             className = "quest-details-form-wrapper" 
             key = {data.id}
         >
-            <QuestDetailsForm 
+            <FileDetailsForm 
               data = {data}
-              deleteQuest = { this.context.deleteQuest }
-              updateQuest = { this.context.updateQuest }
-              viewSelectedQuest = { this.context.viewSelectedQuest }
+              deleteFile = { this.context.deleteFile }
+              updateFile = { this.context.updateFile }
+              viewSelectedFile = { this.context.viewSelectedFile }
               viewMode = { this.context.viewMode }
 
             />
@@ -31,7 +31,7 @@ class MultiViewLayout extends Component {
             <div>
                 <TopControls />
 
-                { this.renderQuestDetailsForm() }
+                { this.renderFileDetailsForm() }
             </div>
         );
     }

@@ -1,14 +1,16 @@
 import React, { Component, Fragment } from 'react';
 import copy from 'copy-to-clipboard';
 import './quest-details-form.scss';
+import copyToClipboard from '../lib/copy-to-clipboard';
+import { convertArrayToFormattedText, convertTextToFormattedText, convertDetailsToArray } from '../lib/convert-text';
 
-class QuestDetailsForm extends Component {
+class FileDetailsForm extends Component {
     constructor (props) {
         super(props);
 
         this.state = {
             details: this.props.data 
-                        ? this.convertDetailsToArray(this.props.data.editable.details) 
+                        ? convertDetailsToArray(this.props.data.editable.details, 30, 7) 
                         : [],
             detailsAsText: this.props.data.editable 
                             ? this.props.data.editable.details 
@@ -24,11 +26,11 @@ class QuestDetailsForm extends Component {
 
         let lines = this.props.data.editable.details.split("<NEWLINE>");
 
-        lines = lines.map( (line, index) => {
+        lines = lines.map( (line) => {
             return line.slice(0, 30);
         });
 
-        this.props.updateQuest(this.state.detailsAsText, prevProps.data);
+        this.props.updateFile(this.state.detailsAsText, prevProps.data);
 
         this.setState({
           details: lines,
@@ -78,7 +80,7 @@ class QuestDetailsForm extends Component {
 
         this.setState({
             details: details,
-            detailsAsText: this.convertDetailsToPlainText(details),
+            detailsAsText: convertArrayToFormattedText(details),
             currentLine: -1
         });
     }
@@ -97,10 +99,10 @@ class QuestDetailsForm extends Component {
 
         this.setState({
             details: details,
-            detailsAsText: this.convertDetailsToPlainText(details)
+            detailsAsText: convertArrayToFormattedText(details)
         });
 
-        this.props.updateQuest(this.state.detailsAsText, this.props.data);
+        this.props.updateFile(this.state.detailsAsText, this.props.data);
 
     }
 
@@ -112,48 +114,23 @@ class QuestDetailsForm extends Component {
 
     loadDetailsText = () => {
         this.setState({
-            details: this.convertDetailsToArray(this.state.importedDetailsText),
-            detailsAsText: this.state.importedDetailsText
+            details: convertDetailsToArray(this.state.importedDetailsText, 30, 7),
+            detailsAsText: convertTextToFormattedText(this.state.importedDetailsText, 30, 7)
         });
-    }
-
-    convertDetailsToPlainText = (details) => {
-        let text = "";
-
-        details.filter( (line) => line.length > 0 ).map( (line, index) => {
-            if (details.length > 0 && index > 0) {
-                text += "<NEWLINE>";
-            }
-
-            text += line;
-        });
-
-        return text;
-    }
-
-    convertDetailsToArray = (detailsStr) => {
-        let lines = detailsStr.split("<NEWLINE>");
-
-        lines = lines.map( (line) => {
-            return line.slice(0, 30);
-        });
-
-        return lines;
     }
 
     copyToClipboard = () => {
-        let data = this.props.data.editable.title             + "\n"
-                    + this.props.data.editable.target         + "\n"
-                    + this.props.data.editable.fail_condition + "\n"
-                    + this.state.detailsAsText                + "\n"
-                    + this.props.data.editable.monsters       + "\n"
-                    + this.props.data.editable.client         + "\n";
-
-        copy(data);
+        copyToClipboard({...this.props.data.editable, details: this.state.detailsAsText});
     }
     
     changeViewMode = () => {
-        this.props.viewSelectedQuest({...this.props.data, editable: {...this.props.data.editable, details: this.state.detailsAsText}});
+        this.props.viewSelectedFile({
+                                        ...this.props.data, 
+                                        editable: {
+                                                    ...this.props.data.editable, 
+                                                    details: this.state.detailsAsText
+                                                  }
+                                    });
     }
 
     renderInputBoxes = () => {
@@ -212,18 +189,18 @@ class QuestDetailsForm extends Component {
                     }
                     
                     <div className = "bottom-details">
-                        <span>{this.props.data.editable.file_name}</span>
+                        <span>{this.props.data.file_name}</span>
 
                         <div className = "side-controls">
                             { (this.props.viewMode === "MULTI") &&
                                 <Fragment>
                                     <button onClick = { this.changeViewMode }>
-                                        Edit Quest
+                                        Edit File
                                     </button>
 
                                     <button 
                                         className = "delete-btn"
-                                        onClick = { this.props.deleteQuest.bind(this, this.props.data) }
+                                        onClick = { this.props.deleteFile.bind(this, this.props.data) }
                                     >
                                         Delete
                                     </button>
@@ -235,7 +212,7 @@ class QuestDetailsForm extends Component {
                 
                 <div className = "top-controls">
                     <div className = "line-counter">
-                        { this.state.details.length + "/7"}
+                        { this.state.details.length + "/7"} Lines
                     </div>
 
                     <div className = "buttons-wrapper">
@@ -269,7 +246,7 @@ class QuestDetailsForm extends Component {
 
                 <label className = "load-quest-details">
                     <p>
-                        If you want to edit preformatted quest details text instead, simply copy & paste it into the box below:
+                        To edit existing file details text instead, simply copy & paste it into the box below:
                     </p>
                     <input 
                         type = "text" 
@@ -280,7 +257,7 @@ class QuestDetailsForm extends Component {
                         className = "load-new-details" 
                         onClick = { this.loadDetailsText }
                     >
-                        Load Quest Details
+                        Edit File Details
                     </button>
                 </label>
                 
@@ -310,4 +287,4 @@ class QuestDetailsForm extends Component {
     }
 }
 
-export default QuestDetailsForm;
+export default FileDetailsForm;

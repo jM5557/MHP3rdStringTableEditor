@@ -1,29 +1,29 @@
 import React, { useContext } from 'react';
-import { QuestContext } from '../quest-context';
-import QuestImport from './quest-import';
+import { FileContext } from '../file-context';
+import FileImport from './file-import';
 
 import './top-controls.scss';
 
 export const TopControls = () => {
-    let context = useContext(QuestContext);
+    let context = useContext(FileContext);
     
     return (
         <div className = "top-controls">
-            { (context.quests.length > 0 && context.viewMode === 'SINGLE') &&
+            { (context.files.length > 0 && context.viewMode === 'SINGLE') &&
                 <button 
                     onClick = { context.setViewMode.bind(this, 'MULTI') }
                     className = "view-btn"
                 >
-                    View All Quests
+                    View All Files
                 </button>
             }
 
             <div className = "side-controls right">
-                <QuestImport />
+                <FileImport />
 
-                { (context.quests.length > 0) &&
-                    <button className = "delete-all-btn" onClick = {context.clearAllQuests}>
-                    Delete All Quests
+                { (context.files.length > 0) &&
+                    <button className = "delete-all-btn" onClick = {context.clearAllFiles}>
+                    Delete All Files
                     </button>
                 }
             </div>
