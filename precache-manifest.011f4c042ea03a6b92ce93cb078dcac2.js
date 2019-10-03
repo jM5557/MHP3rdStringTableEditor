@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "7fc0d9cf0a7add75568edab798cc02ee",
+    "revision": "a162b15aa7153b9c6c28b2d91f211b0b",
     "url": "/MHP3rdStringTableEditor/index.html"
   },
   {
-    "revision": "9812cb16afa789d20e4b",
-    "url": "/MHP3rdStringTableEditor/static/css/main.afa22723.chunk.css"
+    "revision": "c3947282c2e8defdf461",
+    "url": "/MHP3rdStringTableEditor/static/css/main.4a617f7c.chunk.css"
   },
   {
     "revision": "ce0fd5b0dcaddc0fa111",
     "url": "/MHP3rdStringTableEditor/static/js/2.b7082e18.chunk.js"
   },
   {
-    "revision": "9812cb16afa789d20e4b",
-    "url": "/MHP3rdStringTableEditor/static/js/main.0cd21293.chunk.js"
+    "revision": "c3947282c2e8defdf461",
+    "url": "/MHP3rdStringTableEditor/static/js/main.56ce86e3.chunk.js"
   },
   {
     "revision": "91eb5a5e4d6e35afaf38",

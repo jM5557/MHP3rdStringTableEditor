@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/MHP3rdStringTableEditor/static/css/main.afa22723.chunk.css",
-    "main.js": "/MHP3rdStringTableEditor/static/js/main.0cd21293.chunk.js",
-    "main.js.map": "/MHP3rdStringTableEditor/static/js/main.0cd21293.chunk.js.map",
+    "main.css": "/MHP3rdStringTableEditor/static/css/main.4a617f7c.chunk.css",
+    "main.js": "/MHP3rdStringTableEditor/static/js/main.56ce86e3.chunk.js",
+    "main.js.map": "/MHP3rdStringTableEditor/static/js/main.56ce86e3.chunk.js.map",
     "runtime-main.js": "/MHP3rdStringTableEditor/static/js/runtime-main.7e207056.js",
     "runtime-main.js.map": "/MHP3rdStringTableEditor/static/js/runtime-main.7e207056.js.map",
     "static/js/2.b7082e18.chunk.js": "/MHP3rdStringTableEditor/static/js/2.b7082e18.chunk.js",
     "static/js/2.b7082e18.chunk.js.map": "/MHP3rdStringTableEditor/static/js/2.b7082e18.chunk.js.map",
     "index.html": "/MHP3rdStringTableEditor/index.html",
-    "precache-manifest.67df673f9c44a45ba2ecce35b0e78d36.js": "/MHP3rdStringTableEditor/precache-manifest.67df673f9c44a45ba2ecce35b0e78d36.js",
+    "precache-manifest.011f4c042ea03a6b92ce93cb078dcac2.js": "/MHP3rdStringTableEditor/precache-manifest.011f4c042ea03a6b92ce93cb078dcac2.js",
     "service-worker.js": "/MHP3rdStringTableEditor/service-worker.js",
-    "static/css/main.afa22723.chunk.css.map": "/MHP3rdStringTableEditor/static/css/main.afa22723.chunk.css.map"
+    "static/css/main.4a617f7c.chunk.css.map": "/MHP3rdStringTableEditor/static/css/main.4a617f7c.chunk.css.map"
   }
 }
