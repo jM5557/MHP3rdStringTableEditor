@@ -21,7 +21,8 @@ class QuestDetailsForm extends Component {
     }
 
     componentDidUpdate(prevProps) {
-      if (this.props.data.id !== prevProps.data.id) {
+      if (this.props.data.id !== prevProps.data.id
+            || this.props.data.editable !== prevProps.data.editable) {
 
         let lines = this.props.data.editable.details.split("<NEWLINE>");
 

@@ -34,6 +34,22 @@ let Content = () => {
 
       {(context.files.length < 1) &&
         <div className = "large-import">
+          <div className = "about">
+            <h1 className = "top">
+              MHP3rd String Table Editor
+            </h1>
+            <div className = "text-details">
+              A simple web editor for working with Monster Hunter Portable 3rd string table text files.
+                <br />
+              Use this tool to edit quest string table files or preview other string tables (base, extras, npc dialogue)
+                <br />
+                <br />
+              Files Supported: *.txt
+                <br />
+                <br />
+              credit: codestation for mhtools | <a href = "https://github.com/codestation/mhtools">Available Here</a>
+            </div>
+          </div>
           <FileImport doNotDisplayMessage = { true } />
         </div>
       }

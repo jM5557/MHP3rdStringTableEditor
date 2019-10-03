@@ -8,20 +8,26 @@ class FileImport extends Component {
 
     state = {
         filesLoaded: [],
+        displayMessage: false,
+        filesLoadedMessage: '',
         filesLoadedSuccess: false
     }
 
-    displayFilesLoadedSuccessMessage = () => {
+    displayFilesLoadedMessage = (message, isSuccess) => {
         if (this.props.doNotDisplayMessage){
             return;
         }
         
         this.setState({
-            filesLoadedSuccess: true
+            displayMessage: true,
+            filesLoadedMessage: message,
+            filesLoadedSuccess: isSuccess
         });
 
         window.setTimeout(() => {
             this.setState({
+                displayMessage: false,
+                filesLoadedMessage: '',
                 filesLoadedSuccess: false
             });
         }, 2000);
@@ -29,47 +35,59 @@ class FileImport extends Component {
 
     loadFiles = () => {
         let files = document.getElementById("file-import").files;
-    
-        Array.from(files).map((file, index) => {
-          let fileReader = new FileReader();
-    
-          fileReader.onload = (event) => {
-            let data = event.target.result;
-    
-            const lines = data.split(/\r\n|\n/);
 
-            let payload = data;
-            let file_type = "DATA";
+        let fileArray = Array.from(files);
 
-            if (lines.length === 6 || lines.length === 7) {
-                payload = {
-                  title: lines[0],
-                  target: lines[1],
-                  fail_condition: lines[2],
-                  details: lines[3],
-                  monsters: lines[4],
-                  client: lines[5]
-                }
+        fileArray.reduce((res, file, index) => {
+            if (file.type === "text/plain") {
+                let fileReader = new FileReader();
 
-                file_type = "QUEST";
-            }
-
-            let fileData = {
-                editable: payload,
-                original: {...payload},
-                file_name: file.name,
-                file_type: file_type
-            }
+                fileReader.onload = (event) => {
+                    let data = event.target.result;
+                
+                    const lines = data.split(/\r\n|\n/);
             
-            this.context.addFile(fileData);
-
-            if (index === this.state.filesLoaded.length - 1) {
-                this.displayFilesLoadedSuccessMessage();
+                    let payload = data;
+                    let file_type = "DATA";
+            
+                    if (lines.length === 6 || lines.length === 7) {
+                        payload = {
+                            title: lines[0],
+                            target: lines[1],
+                            fail_condition: lines[2],
+                            details: lines[3],
+                            monsters: lines[4],
+                            client: lines[5]
+                        }
+            
+                        file_type = "QUEST";
+                    }
+            
+                    let fileData = {
+                        editable: payload,
+                        original: {...payload},
+                        file_name: file.name,
+                        file_type: file_type
+                    }
+                    
+                    this.context.addFile(fileData);
+            
+                    if (index === this.state.filesLoaded.length - 1) {
+                        this.displayFilesLoadedMessage('Files Loaded!', true);
+                    }
+                }
+                
+                fileReader.readAsText(file, "UTF-8");
             }
-          }
-          
-          fileReader.readAsText(file, "UTF-8");
-        });
+
+            else {
+                if (index === this.state.filesLoaded.length - 1) {
+                    this.displayFilesLoadedMessage('Some files failed to load.', false);
+                }
+            }
+
+            return res;
+        }, []);
     }
 
     updateFileList = (event) => {
@@ -83,8 +101,14 @@ class FileImport extends Component {
     render () {
         return (
             <div className = "file-import">
-                { (this.state.filesLoadedSuccess) &&
-                    <span className = "files-loaded success">Files Loaded!</span>
+                { (this.state.displayMessage) &&
+                    <span className = { (this.state.filesLoadedSuccess) 
+                                            ? "files-loaded success" 
+                                            : "files-loaded failure" 
+                                    }
+                    >
+                        {this.state.filesLoadedMessage}
+                    </span>
                 }
                 <label htmlFor = "file-import" className = "file-import-inner">
                     <input 

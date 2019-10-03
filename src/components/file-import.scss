@@ -4,13 +4,17 @@ $fontHeavy: 'Barlow', sans-serif;
     .files-loaded {
         padding: 8px 12px;
         font-family: $fontHeavy;
-        font-size: 14px;
+        font-size: 12px;
         font-weight: bolder;
         letter-spacing: 1.25px;
         text-transform: uppercase;
 
         &.success {
             color: #25b925;
+        }
+
+        &.failure {
+            color: #df515d;
         }
     }
 }
